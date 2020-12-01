@@ -4,17 +4,51 @@ using System.Linq;
 
 namespace AdventOfCode
 {
-    class Program
+    public static class Program
     {
-        static void Main(string[] args)
+        public static void Main()
         {
             var lines = File.ReadAllLines("input.txt");
             var numbers = lines.Select(s => int.Parse(s)).ToArray();
 
-            var found = false;
-            var first = 0;
-            var second = 0;
-            var third = 0;
+            var partOne = PartOne(numbers);
+			if (partOne > 0) {
+				Console.WriteLine($"Part 1: {partOne}");
+			} else {
+                Console.Error.WriteLine("Failed to solve Part 1");
+            }
+
+			var partTwo = PartTwo(numbers);
+			if (partTwo > 0) {
+				Console.WriteLine($"Part 2: {partTwo}");
+			} else {
+                Console.Error.WriteLine("Failed to solve Part 2");
+            }
+        }
+
+		private static int PartOne(int[] numbers) {
+            int first, second;
+
+            for(var i = 0; i < numbers.Length; i++) {
+                first = numbers[i];
+
+                for (var j = 0; j < numbers.Length; j++) {
+                    if (i == j)
+                        continue;
+
+                    second = numbers[j];
+
+					var sum = first + second;
+					if (sum == 2020)
+						return first * second;
+                }
+            }
+
+			return 0;
+		}
+
+		private static int PartTwo(int[] numbers) {
+            int first, second, third;
 
             for(var i = 0; i < numbers.Length; i++) {
                 first = numbers[i];
@@ -32,30 +66,13 @@ namespace AdventOfCode
                         third = numbers[k];
 
                         var sum = first + second + third;
-                        found = sum == 2020;
-
-                        if (found)
-                            break;
+						if (sum == 2020)
+							return first * second * third;
                     }
-
-                    if (found)
-                        break;
                 }
-
-                if (found)
-                    break;
             }
 
-            Console.WriteLine($"First: {first}");
-            Console.WriteLine($"Second: {second}");
-            Console.WriteLine($"Third: {third}");
-
-            if (found) {
-                var value = first * second * third;
-                Console.WriteLine($"Value: {value}");
-            } else {
-                Console.WriteLine("Value not found");
-            }
-        }
+			return 0;
+		}
     }
 }
