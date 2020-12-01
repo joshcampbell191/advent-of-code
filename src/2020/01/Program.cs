@@ -15,14 +15,14 @@ namespace AdventOfCode
 			if (partOne > 0) {
 				Console.WriteLine($"Part 1: {partOne}");
 			} else {
-				Console.Error.WriteLine("Failed to solve Part 1");
+				Console.WriteLine("Failed to solve Part 1");
 			}
 
 			var partTwo = PartTwo(numbers);
 			if (partTwo > 0) {
 				Console.WriteLine($"Part 2: {partTwo}");
 			} else {
-				Console.Error.WriteLine("Failed to solve Part 2");
+				Console.WriteLine("Failed to solve Part 2");
 			}
 		}
 
