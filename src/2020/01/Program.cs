@@ -4,75 +4,75 @@ using System.Linq;
 
 namespace AdventOfCode
 {
-    public static class Program
-    {
-        public static void Main()
-        {
-            var lines = File.ReadAllLines("input.txt");
-            var numbers = lines.Select(s => int.Parse(s)).ToArray();
+	public static class Program
+	{
+		public static void Main()
+		{
+			var lines = File.ReadAllLines("input.txt");
+			var numbers = lines.Select(s => int.Parse(s)).ToArray();
 
-            var partOne = PartOne(numbers);
+			var partOne = PartOne(numbers);
 			if (partOne > 0) {
 				Console.WriteLine($"Part 1: {partOne}");
 			} else {
-                Console.Error.WriteLine("Failed to solve Part 1");
-            }
+				Console.Error.WriteLine("Failed to solve Part 1");
+			}
 
 			var partTwo = PartTwo(numbers);
 			if (partTwo > 0) {
 				Console.WriteLine($"Part 2: {partTwo}");
 			} else {
-                Console.Error.WriteLine("Failed to solve Part 2");
-            }
-        }
+				Console.Error.WriteLine("Failed to solve Part 2");
+			}
+		}
 
 		private static int PartOne(int[] numbers) {
-            int first, second;
+			int first, second;
 
-            for(var i = 0; i < numbers.Length; i++) {
-                first = numbers[i];
+			for(var i = 0; i < numbers.Length; i++) {
+				first = numbers[i];
 
-                for (var j = 0; j < numbers.Length; j++) {
-                    if (i == j)
-                        continue;
+				for (var j = 0; j < numbers.Length; j++) {
+					if (i == j)
+						continue;
 
-                    second = numbers[j];
+					second = numbers[j];
 
 					var sum = first + second;
 					if (sum == 2020)
 						return first * second;
-                }
-            }
+				}
+			}
 
 			return 0;
 		}
 
 		private static int PartTwo(int[] numbers) {
-            int first, second, third;
+			int first, second, third;
 
-            for(var i = 0; i < numbers.Length; i++) {
-                first = numbers[i];
+			for(var i = 0; i < numbers.Length; i++) {
+				first = numbers[i];
 
-                for (var j = 0; j < numbers.Length; j++) {
-                    if (i == j)
-                        continue;
+				for (var j = 0; j < numbers.Length; j++) {
+					if (i == j)
+						continue;
 
-                    second = numbers[j];
+					second = numbers[j];
 
-                    for (var k = 0; k < numbers.Length; k++) {
-                        if (i == k || j == k)
-                            continue;
+					for (var k = 0; k < numbers.Length; k++) {
+						if (i == k || j == k)
+							continue;
 
-                        third = numbers[k];
+						third = numbers[k];
 
-                        var sum = first + second + third;
+						var sum = first + second + third;
 						if (sum == 2020)
 							return first * second * third;
-                    }
-                }
-            }
+					}
+				}
+			}
 
 			return 0;
 		}
-    }
+	}
 }
