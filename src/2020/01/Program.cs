@@ -12,27 +12,36 @@ namespace AdventOfCode
 			var numbers = lines.Select(s => int.Parse(s)).ToArray();
 
 			var partOne = PartOne(numbers);
-			if (partOne > 0) {
+			if (partOne > 0)
+			{
 				Console.WriteLine($"Part 1: {partOne}");
-			} else {
+			}
+			else
+			{
 				Console.WriteLine("Failed to solve Part 1");
 			}
 
 			var partTwo = PartTwo(numbers);
-			if (partTwo > 0) {
+			if (partTwo > 0)
+			{
 				Console.WriteLine($"Part 2: {partTwo}");
-			} else {
+			}
+			else
+			{
 				Console.WriteLine("Failed to solve Part 2");
 			}
 		}
 
-		private static int PartOne(int[] numbers) {
+		private static int PartOne(int[] numbers)
+		{
 			int first, second;
 
-			for(var i = 0; i < numbers.Length; i++) {
+			for (var i = 0; i < numbers.Length; i++)
+			{
 				first = numbers[i];
 
-				for (var j = 0; j < numbers.Length; j++) {
+				for (var j = 0; j < numbers.Length; j++)
+				{
 					if (i == j)
 						continue;
 
@@ -47,19 +56,23 @@ namespace AdventOfCode
 			return 0;
 		}
 
-		private static int PartTwo(int[] numbers) {
+		private static int PartTwo(int[] numbers)
+		{
 			int first, second, third;
 
-			for(var i = 0; i < numbers.Length; i++) {
+			for (var i = 0; i < numbers.Length; i++)
+			{
 				first = numbers[i];
 
-				for (var j = 0; j < numbers.Length; j++) {
+				for (var j = 0; j < numbers.Length; j++)
+				{
 					if (i == j)
 						continue;
 
 					second = numbers[j];
 
-					for (var k = 0; k < numbers.Length; k++) {
+					for (var k = 0; k < numbers.Length; k++)
+					{
 						if (i == k || j == k)
 							continue;
 
