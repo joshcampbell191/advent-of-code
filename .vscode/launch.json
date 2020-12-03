@@ -5,7 +5,7 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "Day 01",
+			"name": "2020 - Day 01",
 			"type": "coreclr",
 			"request": "launch",
 			"preLaunchTask": "build",
@@ -18,7 +18,7 @@
 			"stopAtEntry": false
 		},
 		{
-			"name": "Day 02",
+			"name": "2020 - Day 02",
 			"type": "coreclr",
 			"request": "launch",
 			"preLaunchTask": "build",
@@ -31,7 +31,7 @@
 			"stopAtEntry": false
 		},
 		{
-			"name": "Day 03",
+			"name": "2020 - Day 03",
 			"type": "coreclr",
 			"request": "launch",
 			"preLaunchTask": "build",
@@ -39,6 +39,19 @@
 			"program": "${workspaceFolder}/src/2020/03/bin/Debug/netcoreapp3.1/03.dll",
 			"args": [],
 			"cwd": "${workspaceFolder}/src/2020/03",
+			// For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+			"console": "internalConsole",
+			"stopAtEntry": false
+		},
+		{
+			"name": "2020 - Day 04",
+			"type": "coreclr",
+			"request": "launch",
+			"preLaunchTask": "build",
+			// If you have changed target frameworks, make sure to update the program path.
+			"program": "${workspaceFolder}/src/2020/04/bin/Debug/netcoreapp3.1/04.dll",
+			"args": [],
+			"cwd": "${workspaceFolder}/src/2020/04",
 			// For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
 			"console": "internalConsole",
 			"stopAtEntry": false
