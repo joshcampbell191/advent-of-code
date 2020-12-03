@@ -15,23 +15,15 @@ namespace AdventOfCode
 
             var partOne = PartOne(lines);
             if (partOne > 0)
-            {
                 Console.WriteLine($"Part 1: {partOne}");
-            }
             else
-            {
                 Console.WriteLine("Failed to solve Part 1");
-            }
 
             var partTwo = PartTwo(lines);
             if (partTwo > 0)
-            {
                 Console.WriteLine($"Part 2: {partTwo}");
-            }
             else
-            {
                 Console.WriteLine("Failed to solve Part 2");
-            }
         }
 
         private static int PartOne(string[] lines)
@@ -77,9 +69,7 @@ namespace AdventOfCode
 				var secondValid = password[secondIndex - 1] == character;
 
                 if (firstValid != secondValid)
-                {
                     valid++;
-                }
             }
             return valid;
         }

@@ -13,23 +13,15 @@ namespace AdventOfCode
 
 			var partOne = PartOne(numbers);
 			if (partOne > 0)
-			{
 				Console.WriteLine($"Part 1: {partOne}");
-			}
 			else
-			{
 				Console.WriteLine("Failed to solve Part 1");
-			}
 
 			var partTwo = PartTwo(numbers);
 			if (partTwo > 0)
-			{
 				Console.WriteLine($"Part 2: {partTwo}");
-			}
 			else
-			{
 				Console.WriteLine("Failed to solve Part 2");
-			}
 		}
 
 		private static int PartOne(int[] numbers)
