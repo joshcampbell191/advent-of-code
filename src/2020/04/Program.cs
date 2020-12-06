@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace AdventOfCode
 {
@@ -16,15 +17,26 @@ namespace AdventOfCode
 		public string PassportId { get; set; }
 		public string CountryId { get; set; }
 
-		public bool IsValid()
+		public bool HasRequiredFields()
 		{
 			return BirthYear.HasValue &&
 				IssueYear.HasValue &&
 				ExpirationYear.HasValue &&
 				!string.IsNullOrEmpty(Height) &&
-				!string.IsNullOrEmpty(HairColor) &&
+				!string.IsNullOrEmpty(HairColor) && 
 				!string.IsNullOrEmpty(EyeColor) &&
 				!string.IsNullOrEmpty(PassportId);
+		}
+
+		public bool IsValid()
+		{
+			return BirthYear.HasValue && BirthYear.Value >= 1920 && BirthYear.Value <= 2002 &&
+				IssueYear.HasValue && IssueYear.Value >= 2010 && IssueYear.Value <= 2020 &&
+				ExpirationYear.HasValue && ExpirationYear.Value >= 2020 && ExpirationYear.Value <= 2030 &&
+				!string.IsNullOrEmpty(Height) && Regex.IsMatch(Height, "^((?:1[5-8][0-9]|19[0-3])cm|(?:59|6[0-9]|7[0-6])in)$") &&
+				!string.IsNullOrEmpty(HairColor) && Regex.IsMatch(HairColor, "^#[a-f0-9]{6}$") &&
+				!string.IsNullOrEmpty(EyeColor) && Regex.IsMatch(EyeColor, "^(amb|blu|brn|gry|grn|hzl|oth)$") &&
+				!string.IsNullOrEmpty(PassportId) && Regex.IsMatch(PassportId, "^[0-9]{9}$");
 		}
 	}
 
@@ -50,12 +62,12 @@ namespace AdventOfCode
 
 		private static int PartOne(Passport[] passports)
 		{
-			return passports.Count(p => p.IsValid());
+			return passports.Count(p => p.HasRequiredFields());
 		}
 
 		private static int PartTwo(Passport[] passports)
 		{
-			return 0;
+			return passports.Count(p => p.IsValid());
 		}
 
 		private static Passport[] ParsePassports(string[] lines)
@@ -96,6 +108,7 @@ namespace AdventOfCode
 					var name = field[0];
 					var value = field[1];
 
+
 					switch(name)
 					{
 						case "byr":
@@ -125,6 +138,17 @@ namespace AdventOfCode
 					}
 				}
 			}
+
+			passports.Add(new Passport {
+						BirthYear = birthYear,
+						IssueYear = issueYear,
+						ExpirationYear = expirationYear,
+						Height = height,
+						HairColor = hairColor,
+						EyeColor = eyeColor,
+						PassportId = passportId,
+						CountryId = countryId
+			});
 
 			return passports.ToArray();
 		}
