@@ -8,27 +8,26 @@ namespace AdventOfCode
 		public static void Main()
 		{
 			var lines = File.ReadAllLines("input.txt");
-			var numbers = lines.Select(s => int.Parse(s)).ToArray();
 
-			var partOne = PartOne(numbers);
+			var partOne = PartOne(lines);
 			if (partOne > 0)
 				Console.WriteLine($"Part 1: {partOne}");
 			else
 				Console.WriteLine("Failed to solve Part 1");
 
-			var partTwo = PartTwo(numbers);
+			var partTwo = PartTwo(lines);
 			if (partTwo > 0)
 				Console.WriteLine($"Part 2: {partTwo}");
 			else
 				Console.WriteLine("Failed to solve Part 2");
 		}
 
-		private static int PartOne(int[] numbers)
+		private static int PartOne(string[] lines)
 		{
             return 0;
 		}
 
-		private static int PartTwo(int[] numbers)
+		private static int PartTwo(string[] lines)
 		{
 			return 0;
 		}
