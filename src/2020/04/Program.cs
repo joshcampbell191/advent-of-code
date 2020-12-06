@@ -30,13 +30,14 @@ namespace AdventOfCode
 
 		public bool IsValid()
 		{
-			return BirthYear.HasValue && BirthYear.Value >= 1920 && BirthYear.Value <= 2002 &&
-				IssueYear.HasValue && IssueYear.Value >= 2010 && IssueYear.Value <= 2020 &&
-				ExpirationYear.HasValue && ExpirationYear.Value >= 2020 && ExpirationYear.Value <= 2030 &&
-				!string.IsNullOrEmpty(Height) && Regex.IsMatch(Height, "^((?:1[5-8][0-9]|19[0-3])cm|(?:59|6[0-9]|7[0-6])in)$") &&
-				!string.IsNullOrEmpty(HairColor) && Regex.IsMatch(HairColor, "^#[a-f0-9]{6}$") &&
-				!string.IsNullOrEmpty(EyeColor) && Regex.IsMatch(EyeColor, "^(amb|blu|brn|gry|grn|hzl|oth)$") &&
-				!string.IsNullOrEmpty(PassportId) && Regex.IsMatch(PassportId, "^[0-9]{9}$");
+			return HasRequiredFields() && 
+				BirthYear.Value >= 1920 && BirthYear.Value <= 2002 &&
+				IssueYear.Value >= 2010 && IssueYear.Value <= 2020 &&
+				ExpirationYear.Value >= 2020 && ExpirationYear.Value <= 2030 &&
+				Regex.IsMatch(Height, "^(?:1[5-8][0-9]|19[0-3])cm|(?:59|6[0-9]|7[0-6])in$") &&
+				Regex.IsMatch(HairColor, "^#[a-f0-9]{6}$") &&
+				Regex.IsMatch(EyeColor, "^amb|blu|brn|gry|grn|hzl|oth$") &&
+				Regex.IsMatch(PassportId, "^[0-9]{9}$");
 		}
 	}
 
