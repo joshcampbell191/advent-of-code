@@ -1,0 +1,12 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Joshua Campbell",
+    "classifications": [ "Common", "Console" ],
+    "identity": "AdventOfCode.ConsoleTemplate.CSharp",
+    "name": "Advent of Code Console Application",
+    "shortName": "aocconsole",
+    "sourceName": "AdventOfCode",
+    "tags": {
+      "language": "C#"
+    }
+  }
