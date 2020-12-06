@@ -9,13 +9,13 @@ namespace AdventOfCode
 		{
 			var lines = File.ReadAllLines("input.txt");
 
-			var partOne = PartOne(numbers);
+			var partOne = PartOne(lines);
 			if (partOne > 0)
 				Console.WriteLine($"Part 1: {partOne}");
 			else
 				Console.WriteLine("Failed to solve Part 1");
 
-			var partTwo = PartTwo(numbers);
+			var partTwo = PartTwo(lines);
 			if (partTwo > 0)
 				Console.WriteLine($"Part 2: {partTwo}");
 			else
