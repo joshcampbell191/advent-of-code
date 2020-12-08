@@ -46,7 +46,7 @@ namespace AdventOfCode
 
 				history.Enqueue(instruction);
 
-				switch(instruction.Operation)
+				switch (instruction.Operation)
 				{
 					case "acc":
 						accumulator += instruction.Value;
@@ -61,12 +61,58 @@ namespace AdventOfCode
 				index++;
 			}
 
-            return accumulator;
+			return accumulator;
 		}
 
 		private static int PartTwo(Instruction[] instructions)
 		{
-			return 0;
+			var accumulator = 0;
+			var index = 0;
+			var history = new Stack<Instruction>();
+
+			while (true)
+			{
+				if (index >= instructions.Length)
+					break;
+
+				var instruction = instructions[index];
+
+				if (history.Contains(instruction))
+				{
+					var previous = history.Pop();
+					if (previous.Operation == "jmp")
+					{
+						index -= previous.Value;
+						instructions[index].Operation = "nop";
+					}
+
+					else if (previous.Operation == "nop")
+					{
+						index--;
+						instructions[index].Operation = "jmp";
+					}
+
+					continue;
+				}
+
+				history.Push(instruction);
+
+				switch (instruction.Operation)
+				{
+					case "acc":
+						accumulator += instruction.Value;
+						break;
+					case "jmp":
+						index += instruction.Value;
+						continue;
+					case "nop":
+						break;
+				}
+
+				index++;
+			}
+
+			return accumulator;
 		}
 
 		private static Instruction[] ParseInstructions(string[] lines)
@@ -74,13 +120,14 @@ namespace AdventOfCode
 			var pattern = @"(?<operation>.*) (?<value>[+-]\d+)";
 			var instructions = new List<Instruction>();
 
-			foreach(var line in lines)
+			foreach (var line in lines)
 			{
 				if (!Regex.IsMatch(line, pattern))
 					continue;
 
 				var match = Regex.Match(line, pattern);
-				var instruction = new Instruction {
+				var instruction = new Instruction
+				{
 					Operation = match.Groups["operation"].Value,
 					Value = int.Parse(match.Groups["value"].Value)
 				};
