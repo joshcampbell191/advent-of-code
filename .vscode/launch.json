@@ -5,6 +5,19 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "2015 - Day 01",
+			"type": "coreclr",
+			"request": "launch",
+			"preLaunchTask": "build",
+			// If you have changed target frameworks, make sure to update the program path.
+			"program": "${workspaceFolder}/src/2015/01/bin/Debug/netcoreapp3.1/01.dll",
+			"args": [],
+			"cwd": "${workspaceFolder}/src/2015/01",
+			// For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+			"console": "internalConsole",
+			"stopAtEntry": false
+		},
+		{
 			"name": "2020 - Day 01",
 			"type": "coreclr",
 			"request": "launch",
