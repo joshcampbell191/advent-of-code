@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
 namespace AdventOfCode
 {
@@ -22,9 +23,35 @@ namespace AdventOfCode
 				Console.WriteLine("Failed to solve Part 2");
 		}
 
-		private static int PartOne(string[] lines)
+		private static long PartOne(string[] lines)
 		{
-            return 0;
+			var preambleLength = 25;
+            var numbers = lines.Select(l => long.Parse(l)).ToArray();
+
+			for (var i = preambleLength; i < numbers.Length; i++)
+			{
+				var number = numbers[i];
+				var preamble = numbers.Skip(i - preambleLength).Take(preambleLength).ToArray();
+				var valid = false;
+
+				for (var j = 0; j < preambleLength; j++) {
+					for (var k = j + 1; k < preambleLength; k++) {
+						var remainder = number - preamble[j];
+						if (remainder == preamble[k]) {
+							valid = true;
+							break;
+						}
+					}
+
+					if (valid)
+						break;
+				}
+
+				if (!valid)
+					return numbers[i];
+			}
+
+			return 0;
 		}
 
 		private static int PartTwo(string[] lines)
