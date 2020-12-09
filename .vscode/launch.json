@@ -107,7 +107,7 @@
 			// For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
 			"console": "internalConsole",
 			"stopAtEntry": false
-		},,
+		},
 		{
 			"name": "2020 - Day 08",
 			"type": "coreclr",
@@ -117,6 +117,19 @@
 			"program": "${workspaceFolder}/src/2020/08/bin/Debug/netcoreapp3.1/08.dll",
 			"args": [],
 			"cwd": "${workspaceFolder}/src/2020/08",
+			// For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+			"console": "internalConsole",
+			"stopAtEntry": false
+		},
+		{
+			"name": "2020 - Day 09",
+			"type": "coreclr",
+			"request": "launch",
+			"preLaunchTask": "build",
+			// If you have changed target frameworks, make sure to update the program path.
+			"program": "${workspaceFolder}/src/2020/09/bin/Debug/netcoreapp3.1/09.dll",
+			"args": [],
+			"cwd": "${workspaceFolder}/src/2020/09",
 			// For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
 			"console": "internalConsole",
 			"stopAtEntry": false
