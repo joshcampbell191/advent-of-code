@@ -66,53 +66,59 @@ namespace AdventOfCode
 
 		private static int PartTwo(Instruction[] instructions)
 		{
-			var accumulator = 0;
-			var index = 0;
-			var history = new Stack<Instruction>();
-
-			while (true)
+			for (var i = 0; i < instructions.Length; i++)
 			{
-				if (index >= instructions.Length)
-					break;
-
-				var instruction = instructions[index];
-
-				if (history.Contains(instruction))
-				{
-					var previous = history.Pop();
-					if (previous.Operation == "jmp")
-					{
-						index -= previous.Value;
-						instructions[index].Operation = "nop";
-					}
-
-					else if (previous.Operation == "nop")
-					{
-						index--;
-						instructions[index].Operation = "jmp";
-					}
-
+				var invalidInstruction = instructions[i];
+				if (!Regex.IsMatch(invalidInstruction.Operation, "nop|jmp"))
 					continue;
+
+				var previous = instructions[i].Operation;
+				instructions[i].Operation = previous == "nop" ? "jmp" : "nop";
+
+				var accumulator = 0;
+				var index = 0;
+				var history = new Queue<Instruction>();
+
+				var valid = true;
+
+				while(valid) {
+					if (index > instructions.Length - 1)
+						break;
+
+					var instruction = instructions[index];
+
+					// We found a loop
+					if (history.Contains(instruction))
+					{
+						valid = false;
+						break;
+					}
+
+					history.Enqueue(instruction);
+
+					switch (instruction.Operation)
+					{
+						case "acc":
+							accumulator += instruction.Value;
+							break;
+						case "jmp":
+							index += instruction.Value;
+							continue;
+						case "nop":
+							break;
+					}
+
+					index++;
 				}
 
-				history.Push(instruction);
-
-				switch (instruction.Operation)
-				{
-					case "acc":
-						accumulator += instruction.Value;
-						break;
-					case "jmp":
-						index += instruction.Value;
-						continue;
-					case "nop":
-						break;
-				}
-
-				index++;
+				// If valid, return the result, otherwise, reset the operation to it's previous state
+				if (valid)
+					return accumulator;
+				else
+					instructions[i].Operation = previous;
 			}
 
-			return accumulator;
+			return 0;
 		}
 
 		private static Instruction[] ParseInstructions(string[] lines)
