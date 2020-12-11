@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
 namespace AdventOfCode
 {
@@ -24,12 +25,50 @@ namespace AdventOfCode
 
 		private static int PartOne(string[] lines)
 		{
-            return 0;
+			var adapters = lines.Select(int.Parse).OrderBy(n => n).ToArray();
+			int previous = 0, countOne = 0, countThree = 0;
+
+			foreach(var adapter in adapters)
+			{
+				var difference = adapter - previous;
+				switch(difference)
+				{
+					case 1:
+						countOne++;
+						break;
+					case 3:
+						countThree++;
+						break;
+				}
+				previous = adapter;
+			}
+
+			// We add one for the device itself
+			countThree++;
+
+            return countOne * countThree;
 		}
 
-		private static int PartTwo(string[] lines)
+		private static long PartTwo(string[] lines)
 		{
-			return 0;
+			var adapters = lines.Select(int.Parse).OrderBy(n => n).ToArray();
+			var max = adapters.Max();
+			return CountCombinations(0, max, adapters);
+		}
+
+		private static long CountCombinations(int previous, int max, int[] adapters)
+		{
+			var count = 0L;
+
+			if (previous == max)
+				return 1;
+
+			var validAdapters = adapters.Where(a => a > previous && a - previous <= 3).ToArray();
+			foreach(var adapter in validAdapters) {
+				count += CountCombinations(adapter, max, adapters);
+			}
+
+			return count;
 		}
 	}
 }
